@@ -1,4 +1,4 @@
-# Mind the Gap: Disruption Divergence in Patent-Paper Pairs
+# Disruption Is Not Intrinsic: Evidence from Patent–Paper Pairs
 
 This project builds a compact patent-paper-pair feature dataset for studying
 how scientific research and patented technology diverge.
