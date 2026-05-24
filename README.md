@@ -3,6 +3,8 @@
 This project builds a compact patent-paper-pair feature dataset for studying
 how scientific research and patented technology diverge.
 
+(*) This research was supported by JSPS KAKENHI Grant Number 24K05092.
+
 ## Run
 
 ```bash
