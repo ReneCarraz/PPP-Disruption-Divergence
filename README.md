@@ -1,6 +1,6 @@
 # Disruption Is Not Intrinsic: Evidence from Patent–Paper Pairs
 
-Carraz, René and Nguyen, Van-Thien (Dorothie) and Pelletier, Pierre and Yang, Alex Jie and Higham, Kyle, Disruption Is Not Intrinsic: Evidence from Patent–Paper Pairs. 
+Carraz, René and Nguyen, Van-Thien (Dorothie) and Pelletier, Pierre and Yang, Alex Jie and Higham, Kyle, *Disruption Is Not Intrinsic: Evidence from Patent–Paper Pairs*. 
 Available at SSRN: https://ssrn.com/abstract=6811561 or http://dx.doi.org/10.2139/ssrn.6811561
 
 This project builds a compact patent-paper-pair feature dataset for studying
