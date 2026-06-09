@@ -1,87 +1,46 @@
+import re
 from Disruption.disruption_without_self_citations import Disruption_no_self_cite
 
-
-
-year = 0
-Disruption_no_self_cite(
-  project = 'healthy-highway-455915-t4',
-  dataset = 'PPP_project',
-  table_id = 'random_sample_OA',
-  table_out = 'random_sample_OA_disruption_Y0_no_selfcite',
-  var_id = 'control_work_id',
-  Y = year ,
-  var_refs = 'referenced_works',
-  var_year = 'publication_year',
-  source_data = 'nber-i3.openalex.works_241125',
-  source_id = 'id',
-  to_concat_before = "",
-  remove_self_cite_refs=True,
-  remove_self_cite_cits=True,
-  ).compute_metrics()
-
-year = 5
-Disruption_no_self_cite(
-  project = 'healthy-highway-455915-t4',
-  dataset = 'PPP_project',
-  table_id = 'random_sample_OA',
-  table_out = 'random_sample_OA_disruption_Y5_no_selfcite',
-  var_id = 'control_work_id',
-  Y = year ,
-  var_refs = 'referenced_works',
-  var_year = 'publication_year',
-  source_data = 'nber-i3.openalex.works_241125',
-  source_id = 'id',
-  to_concat_before = "",
-  remove_self_cite_refs=True,
-  remove_self_cite_cits=True,
-  ).compute_metrics()
-
-for year in [0,5]:
-  for cat in ["",'cited by examiner', 'cited by applicant']:#, 'cited by third party', 'cited by other']:
-      cat_type = '_'+re.sub(' ','_',cat) if cat else ''
-      table_out = 'random_sample_patents_disruption_'+ cat_type + '_y' + str(year) + '_no_selfcite'
-      print(table_out)
-      Disruption_no_self_cite(
-        project = 'healthy-highway-455915-t4',
-        dataset = 'PPP_project',
-        table_id = 'random_sample_patents',
-        table_out = table_out,
-        var_id = 'control_patent_id',
-        Y = year ,
-        var_refs = 'citation_patent_id',
-        var_year = 'patent_date',
-        source_data = 'nber-i3.patentsview_granted.g_us_patent_citation_20250317',
-        source_id = 'patent_id',
-        aggregated_ref = False,
-        patent = True,
-        year_table = "nber-i3.patentsview_granted.g_patent_20250909",
-        citation_category= cat,
+# random_sample_OA
+for year in [0, 5]:
+    Disruption_no_self_cite(
+        project='healthy-highway-455915-t4',
+        dataset='PPP_project',
+        table_id='random_sample_OA',
+        table_out='random_sample_OA_disruption_Y' + str(year) + '_no_selfcite',
+        var_id='control_work_id',
+        Y=year,
+        var_refs='referenced_works',
+        var_year='publication_year',
+        source_data='nber-i3.openalex.works_241125',
+        source_id='id',
+        to_concat_before='',
         remove_self_cite_refs=True,
         remove_self_cite_cits=True,
-        inventor_table='nber-i3.patentsview_granted.g_inventor_disambiguated_20250317'
+    ).compute_metrics()
+
+# random_sample_patents
+for year in [0, 5]:
+    for cat in ['', 'cited by examiner', 'cited by applicant']:
+        cat_type = '_' + re.sub(' ', '_', cat) if cat else ''
+        table_out = 'random_sample_patents_disruption_' + cat_type + '_y' + str(year) + '_no_selfcite'
+        print(table_out)
+        Disruption_no_self_cite(
+            project='healthy-highway-455915-t4',
+            dataset='PPP_project',
+            table_id='random_sample_patents',
+            table_out=table_out,
+            var_id='control_patent_id',
+            Y=year,
+            var_refs='citation_patent_id',
+            var_year='patent_date',
+            source_data='nber-i3.patentsview_granted.g_us_patent_citation_20250317',
+            source_id='patent_id',
+            aggregated_ref=False,
+            patent=True,
+            year_table='nber-i3.patentsview_granted.g_patent_20250909',
+            citation_category=cat,
+            remove_self_cite_refs=True,
+            remove_self_cite_cits=True,
+            inventor_table='nber-i3.patentsview_granted.g_inventor_disambiguated_20250317',
         ).compute_metrics()
-
-for year in [0,5]:
-  for cat in ["",'cited by examiner', 'cited by applicant']# 'cited by third party', 'cited by other']:
-      cat_type = '_' + re.sub(' ', '_', cat) if cat else ''
-      table_out = 'MM_PPP_disruption_patent' + cat_type + '_Y' + str(year) + '_no_selfcite'
-
-      Disruption_no_self_cite(
-          project='long-sonar-470413-q7',
-          dataset='PPP_project',
-          table_id='MM_PPP',
-          table_out=table_out,
-          var_id='patent',
-          Y=year,
-          var_refs='citation_patent_id',
-          var_year='patent_date',
-          source_data='nber-i3.patentsview_granted.g_us_patent_citation_20250317',
-          source_id='patent_id',
-          aggregated_ref=False,
-          patent=True,
-          year_table="nber-i3.patentsview_granted.g_patent_20250909",
-          citation_category=cat,
-          remove_self_cite_refs=True,
-          remove_self_cite_cits=True,
-          inventor_table='nber-i3.patentsview_granted.g_inventor_disambiguated_20250317'  # NEW
-      ).compute_metrics()
